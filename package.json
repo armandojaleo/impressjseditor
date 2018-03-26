@@ -43,5 +43,8 @@
     "ls": "0.2.1",
     "qunitjs": "2.0.0-rc1",
     "syn": "0.10.0"
+  },
+  "dependencies": {
+    "bootstrap": "^3.3.7"
   }
 }
