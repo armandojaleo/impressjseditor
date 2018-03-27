@@ -3,26 +3,265 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>Bootstrap 101 Template</title>
-
-    <!-- Bootstrap -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
+    <meta name="viewport" content="width=devicewidth, initial-scale=1">
+    <title>Impress JS Editor</title>
+    <link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
+    <link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.css" rel="stylesheet">
   </head>
   <body>
-    <h1>Hello, world!</h1>
-
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="js/bootstrap.min.js"></script>
+    <nav class="navbar navbar-default navbar-static-top">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="#">
+            Impress JS Editor
+          </a>
+        </div>
+      </div>
+    </nav>
+    <div class="container-fluid">
+      <div class="row">
+        <form id="form" action="#" method="post">
+          <div class="col-md-4">
+            <div class="form-group">
+              <h3>New / Edit Step</h3>
+            </div>
+            <div class="form-group">
+              <label class="col-md-4 control-label" for="idStep">Id</label>
+              <div class="col-md-8">
+                <input class="form-control" id="idStep" name="idStep" type="text" placeholder="1">
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-md-4 control-label" for="classStep">Class</label>
+              <div class="col-md-8">
+                <select class="form-control" id="classStep" name="classStep">
+                  <option value="step">step</option>
+                  <option value="step slide">step slide</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-md-4 control-label" for="datax">X</label>
+              <div class="col-md-8">
+                <input class="form-control" id="datax" name="datax" type="text" placeholder="0">
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-md-4 control-label" for="data-y">Y</label>
+              <div class="col-md-8">
+                <input class="form-control" id="datay" name="datay" type="text" placeholder="0">
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-md-4 control-label" for="dataz">Z</label>
+              <div class="col-md-8">
+                <input class="form-control" id="dataz" name="dataz" type="text" placeholder="0">
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-md-4 control-label" for="datarotate">Rotate</label>
+              <div class="col-md-8">
+                <input class="form-control" id="datarotate" name="datarotate" type="text" placeholder="0">
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-md-4 control-label" for="datarotatex">Rotate X</label>
+              <div class="col-md-8">
+                <input class="form-control" id="datarotatex" name="datarotatex" type="text" placeholder="0">
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-md-4 control-label" for="datarotatey">Rotate Y</label>
+              <div class="col-md-8">
+                <input class="form-control" id="datarotatey" name="datarotatey" type="text" placeholder="0">
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-md-4 control-label" for="datarotatez">Rotate Z</label>
+              <div class="col-md-8">
+                <input class="form-control" id="datarotatez" name="datarotatez" type="text" placeholder="0">
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-md-4 control-label" for="datascale">Scale</label>
+              <div class="col-md-8">
+                <input class="form-control" id="datascale" name="datascale" type="text" placeholder="1">
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-md-4 control-label" for="dataautoplay">Autoplay (seconds)</label>
+              <div class="col-md-8">
+                <input class="form-control" id="dataautoplay" name="dataautoplay" type="text" placeholder="2">
+              </div>
+            </div>
+          </div>
+          <div class="col-md-8">
+            <div class="form-group">
+              <h3>&nbsp;</h3>
+            </div>
+            <div class="form-group">
+              <label class="col-md-2 control-label" for="stepContent">Step Content</label>
+              <div class="col-md-10">
+                <textarea id="stepContent" name="stepContent" class="form-control"></textarea>
+              </div>
+            </div>
+            <button type="submit" id="saveStep" class="btn btn-success">Save Step</button>
+            <button type="submit" id="deleteStep" class="btn btn-danger">Delete Step</button>
+          </div>
+        </form>
+      </div>
+      <div id="listSteps" class="row"></div>
+    </div>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script> 
+    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script> 
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.js"></script>
+    <script>
+      (function ($) {
+        $.fn.serializeFormJSON = function () {
+          var o = {};
+          var a = this.serializeArray();
+          $.each(a, function () {
+            if (o[this.name]) {
+              if (!o[this.name].push) {
+                o[this.name] = [o[this.name]];
+              }
+              o[this.name].push(this.value || '');
+            } else {
+              o[this.name] = this.value || '';
+            }
+          });
+          return o;
+        };
+      })(jQuery);
+      function getImpressEditorJson(idStep) {
+        if (localStorage.impressEditorJson !== undefined && localStorage.impressEditorJson != "") {
+          var impressEditorJsonGet = JSON.parse(localStorage.impressEditorJson);
+        };
+        $.when(impressEditorJsonGet).then(function(x) {
+          for (var i = 0; i < impressEditorJsonGet.length; i++) {
+            var p = impressEditorJsonGet.findIndex(x => x.idStep == idStep)
+            if (p !== -1) {
+              $('#idStep').val(impressEditorJsonGet[p].idStep);
+              $('#classStep').val(impressEditorJsonGet[p].classStep);
+              $('#datax').val(impressEditorJsonGet[p].datax);
+              $('#datay').val(impressEditorJsonGet[p].datay);
+              $('#dataz').val(impressEditorJsonGet[p].dataz);
+              $('#datarotate').val(impressEditorJsonGet[p].datarotate);
+              $('#datarotatex').val(impressEditorJsonGet[p].datarotatex);
+              $('#datarotatey').val(impressEditorJsonGet[p].datarotatey);
+              $('#datarotatez').val(impressEditorJsonGet[p].datarotatez);
+              $('#datascale').val(impressEditorJsonGet[p].datascale);
+              $('#dataautoplay').val(impressEditorJsonGet[p].dataautoplay);
+              $('#stepContent').summernote('destroy');
+              $('#stepContent').html(impressEditorJsonGet[p].stepContent);
+              $('#stepContent').summernote({
+                tabsize: 2,
+                height: 325
+              });
+            };
+          };
+        });
+      };
+      function getAllImpressEditorJson() {
+        $('#listSteps').html('');
+        if (localStorage.impressEditorJson !== undefined && localStorage.impressEditorJson != "") {
+          var impressEditorJsonGet = JSON.parse(localStorage.impressEditorJson);
+          for (var i = 0; i < impressEditorJsonGet.length; i++) {
+            $('#listSteps').append('<button class="btn btn-default loadStep" data-idstep="' + impressEditorJsonGet[i].idStep + '">' + impressEditorJsonGet[i].idStep + '</button>');
+          };
+        };
+        reset();
+      };
+      function reset() {
+        /*$('#idStep').val('');
+        $('#classStep').val('step');
+        $('#datax').val('');
+        $('#datay').val('');
+        $('#dataz').val('');
+        $('#datarotate').val('');
+        $('#datarotatex').val('');
+        $('#datarotatey').val('');
+        $('#datarotatez').val('');
+        $('#datascale').val('');
+        $('#dataautoplay').val('');*/
+        $('#stepContent').summernote('destroy');
+        $('#stepContent').html('');
+        $('#stepContent').summernote({
+          placeholder: 'Step text',
+          tabsize: 2,
+          height: 325
+        });
+      };
+      function saveImpressEditorJson(data) {
+        var idStep = data[0].idStep;
+        var classStep = data[0].classStep;
+        var datax = data[0].datax;
+        var datay = data[0].datay;
+        var dataz = data[0].dataz;
+        var datarotate = data[0].datarotate;
+        var datarotatex = data[0].datarotatex;
+        var datarotatey = data[0].datarotatey;
+        var datarotatez = data[0].datarotatez;
+        var datascale = data[0].datascale;
+        var dataautoplay = data[0].dataautoplay;
+        var stepContent = data[0].stepContent;
+        if (localStorage.impressEditorJson !== undefined && localStorage.impressEditorJson != "") {
+          var impressEditorJsonGet = JSON.parse(localStorage.impressEditorJson);
+        };
+        if (impressEditorJsonGet !== undefined) {
+          for (var i = 0; i < impressEditorJsonGet.length; i++) {
+            var p = impressEditorJsonGet.findIndex(x => x.idStep == idStep)
+            if (p !== -1) {
+              if (classStep !== null) { impressEditorJsonGet[p].classStep = classStep; }
+              if (datax !== null) { impressEditorJsonGet[p].datax = datax; }
+              if (datay !== null) { impressEditorJsonGet[p].datay = datay; }
+              if (dataz !== null) { impressEditorJsonGet[p].dataz = dataz; }
+              if (datarotate !== null) { impressEditorJsonGet[p].datarotate = datarotate; }
+              if (datarotatex !== null) { impressEditorJsonGet[p].datarotatex = datarotatex; }
+              if (datarotatey !== null) { impressEditorJsonGet[p].datarotatey = datarotatey; }
+              if (datarotatez !== null) { impressEditorJsonGet[p].datarotatez = datarotatez; }
+              if (datascale !== null) { impressEditorJsonGet[p].datascale = datascale; }
+              if (dataautoplay !== null) { impressEditorJsonGet[p].dataautoplay = dataautoplay; }
+              if (stepContent !== null) { impressEditorJsonGet[p].stepContent = stepContent; }
+            } else {        
+              impressEditorJsonGet.push(data[0]);
+            };
+          };
+          localStorage.impressEditorJson = JSON.stringify(impressEditorJsonGet);
+        } else {
+          localStorage.impressEditorJson = JSON.stringify(data);
+        };
+        getAllImpressEditorJson();
+      };
+      function deleteStep(idStep) {
+        if (localStorage.impressEditorJson !== undefined && localStorage.impressEditorJson != "") {
+          var impressEditorJsonGet = JSON.parse(localStorage.impressEditorJson);
+        };
+        var p = impressEditorJsonGet.findIndex(x => x.idStep == idStep)
+        if (p !== -1) {
+          impressEditorJsonGet.splice(p, 1);
+        };
+        localStorage.impressEditorJson = JSON.stringify(impressEditorJsonGet);
+        getAllImpressEditorJson();
+      };
+      $(document).ready(function() {
+        getAllImpressEditorJson();
+        $('form').submit(function (e) {
+          e.preventDefault();
+          var data = $(this).serializeFormJSON();
+          var jsonToLocalStorage = [];
+          jsonToLocalStorage.push(data);
+          saveImpressEditorJson(jsonToLocalStorage);
+        });
+        $(document).on('click', '.loadStep', function() {
+          var idStep = $(this).data('idstep');
+          getImpressEditorJson(idStep);
+        });
+        $(document).on('click', '#deleteStep', function() {
+          var idStep = $('#idStep').val();
+          deleteStep(idStep);
+        });
+      });
+    </script>
   </body>
 </html>
