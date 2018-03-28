@@ -105,12 +105,33 @@
                 <textarea id="stepContent" name="stepContent" class="form-control"></textarea>
               </div>
             </div>
-            <button type="submit" id="saveStep" class="btn btn-success">Save Step</button>
-            <button type="submit" id="deleteStep" class="btn btn-danger">Delete Step</button>
+            <div class="form-group text-right">
+              <button id="saveStep" class="btn btn-success disabled">Save Step</button>
+              <div id="delStep" data-idaction="deleteStep" class="btn btn-danger disabled" data-toggle="modal" data-target="#confirm-delete" data-title="Please confirm" data-message="Do you want delete this step?">Delete Step</div>
+              <div id="delAllSteps" data-idaction="deleteAllSteps" class="btn btn-danger disabled" data-toggle="modal" data-target="#confirm-delete" data-title="Please confirm" data-message="Do you want delete all steps?">Delete All Steps</div>
+            </div>
           </div>
         </form>
       </div>
-      <div id="listSteps" class="row"></div>
+      <div class="row">
+        <div id="listSteps" class="col-md-12"></div>
+      </div>
+    </div>
+    <div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+              ...
+          </div>
+          <div class="modal-body">
+              ...
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+            <div class="btn btn-danger btn-ok">Delete</div>
+          </div>
+        </div>
+      </div>
     </div>
     <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script> 
     <script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script> 
@@ -134,63 +155,47 @@
         };
       })(jQuery);
       function getImpressEditorJson(idStep) {
-        if (localStorage.impressEditorJson !== undefined && localStorage.impressEditorJson != "") {
+        if (localStorage.impressEditorJson !== undefined && localStorage.impressEditorJson != '') {
           var impressEditorJsonGet = JSON.parse(localStorage.impressEditorJson);
         };
         $.when(impressEditorJsonGet).then(function(x) {
-          for (var i = 0; i < impressEditorJsonGet.length; i++) {
-            var p = impressEditorJsonGet.findIndex(x => x.idStep == idStep)
-            if (p !== -1) {
-              $('#idStep').val(impressEditorJsonGet[p].idStep);
-              $('#classStep').val(impressEditorJsonGet[p].classStep);
-              $('#datax').val(impressEditorJsonGet[p].datax);
-              $('#datay').val(impressEditorJsonGet[p].datay);
-              $('#dataz').val(impressEditorJsonGet[p].dataz);
-              $('#datarotate').val(impressEditorJsonGet[p].datarotate);
-              $('#datarotatex').val(impressEditorJsonGet[p].datarotatex);
-              $('#datarotatey').val(impressEditorJsonGet[p].datarotatey);
-              $('#datarotatez').val(impressEditorJsonGet[p].datarotatez);
-              $('#datascale').val(impressEditorJsonGet[p].datascale);
-              $('#dataautoplay').val(impressEditorJsonGet[p].dataautoplay);
-              $('#stepContent').summernote('destroy');
-              $('#stepContent').html(impressEditorJsonGet[p].stepContent);
-              $('#stepContent').summernote({
-                tabsize: 2,
-                height: 325
-              });
-            };
+          var p = impressEditorJsonGet.findIndex(x => x.idStep == idStep)
+          if (p !== -1) {
+            $('#saveStep').removeClass('disabled');
+            $('#delStep').removeClass('disabled');
+            $('#idStep').val(impressEditorJsonGet[p].idStep);
+            $('#classStep').val(impressEditorJsonGet[p].classStep);
+            $('#datax').val(impressEditorJsonGet[p].datax);
+            $('#datay').val(impressEditorJsonGet[p].datay);
+            $('#dataz').val(impressEditorJsonGet[p].dataz);
+            $('#datarotate').val(impressEditorJsonGet[p].datarotate);
+            $('#datarotatex').val(impressEditorJsonGet[p].datarotatex);
+            $('#datarotatey').val(impressEditorJsonGet[p].datarotatey);
+            $('#datarotatez').val(impressEditorJsonGet[p].datarotatez);
+            $('#datascale').val(impressEditorJsonGet[p].datascale);
+            $('#dataautoplay').val(impressEditorJsonGet[p].dataautoplay);
+            $('#stepContent').summernote('destroy');
+            $('#stepContent').html(impressEditorJsonGet[p].stepContent);
+            $('#stepContent').summernote({
+              tabsize: 2,
+              height: 325
+            });
           };
         });
       };
       function getAllImpressEditorJson() {
+        reset();
         $('#listSteps').html('');
-        if (localStorage.impressEditorJson !== undefined && localStorage.impressEditorJson != "") {
+        $('#confirm-delete').modal('hide');
+        if (localStorage.impressEditorJson !== undefined && localStorage.impressEditorJson != '') {
+          $('#delAllSteps').removeClass('disabled');
           var impressEditorJsonGet = JSON.parse(localStorage.impressEditorJson);
           for (var i = 0; i < impressEditorJsonGet.length; i++) {
             $('#listSteps').append('<button class="btn btn-default loadStep" data-idstep="' + impressEditorJsonGet[i].idStep + '">' + impressEditorJsonGet[i].idStep + '</button>');
           };
+        } else {
+          $('#saveStep, #delStep, #delAllSteps').addClass('disabled');
         };
-        reset();
-      };
-      function reset() {
-        /*$('#idStep').val('');
-        $('#classStep').val('step');
-        $('#datax').val('');
-        $('#datay').val('');
-        $('#dataz').val('');
-        $('#datarotate').val('');
-        $('#datarotatex').val('');
-        $('#datarotatey').val('');
-        $('#datarotatez').val('');
-        $('#datascale').val('');
-        $('#dataautoplay').val('');*/
-        $('#stepContent').summernote('destroy');
-        $('#stepContent').html('');
-        $('#stepContent').summernote({
-          placeholder: 'Step text',
-          tabsize: 2,
-          height: 325
-        });
       };
       function saveImpressEditorJson(data) {
         var idStep = data[0].idStep;
@@ -205,36 +210,34 @@
         var datascale = data[0].datascale;
         var dataautoplay = data[0].dataautoplay;
         var stepContent = data[0].stepContent;
-        if (localStorage.impressEditorJson !== undefined && localStorage.impressEditorJson != "") {
+        if (localStorage.impressEditorJson !== undefined && localStorage.impressEditorJson != '') {
           var impressEditorJsonGet = JSON.parse(localStorage.impressEditorJson);
         };
         if (impressEditorJsonGet !== undefined) {
-          for (var i = 0; i < impressEditorJsonGet.length; i++) {
-            var p = impressEditorJsonGet.findIndex(x => x.idStep == idStep)
-            if (p !== -1) {
-              if (classStep !== null) { impressEditorJsonGet[p].classStep = classStep; }
-              if (datax !== null) { impressEditorJsonGet[p].datax = datax; }
-              if (datay !== null) { impressEditorJsonGet[p].datay = datay; }
-              if (dataz !== null) { impressEditorJsonGet[p].dataz = dataz; }
-              if (datarotate !== null) { impressEditorJsonGet[p].datarotate = datarotate; }
-              if (datarotatex !== null) { impressEditorJsonGet[p].datarotatex = datarotatex; }
-              if (datarotatey !== null) { impressEditorJsonGet[p].datarotatey = datarotatey; }
-              if (datarotatez !== null) { impressEditorJsonGet[p].datarotatez = datarotatez; }
-              if (datascale !== null) { impressEditorJsonGet[p].datascale = datascale; }
-              if (dataautoplay !== null) { impressEditorJsonGet[p].dataautoplay = dataautoplay; }
-              if (stepContent !== null) { impressEditorJsonGet[p].stepContent = stepContent; }
-            } else {        
-              impressEditorJsonGet.push(data[0]);
-            };
+          var p = impressEditorJsonGet.findIndex(x => x.idStep == idStep)
+          if (p !== -1) {
+            if (classStep !== null) { impressEditorJsonGet[p].classStep = classStep; }
+            if (datax !== null) { impressEditorJsonGet[p].datax = datax; }
+            if (datay !== null) { impressEditorJsonGet[p].datay = datay; }
+            if (dataz !== null) { impressEditorJsonGet[p].dataz = dataz; }
+            if (datarotate !== null) { impressEditorJsonGet[p].datarotate = datarotate; }
+            if (datarotatex !== null) { impressEditorJsonGet[p].datarotatex = datarotatex; }
+            if (datarotatey !== null) { impressEditorJsonGet[p].datarotatey = datarotatey; }
+            if (datarotatez !== null) { impressEditorJsonGet[p].datarotatez = datarotatez; }
+            if (datascale !== null) { impressEditorJsonGet[p].datascale = datascale; }
+            if (dataautoplay !== null) { impressEditorJsonGet[p].dataautoplay = dataautoplay; }
+            if (stepContent !== null) { impressEditorJsonGet[p].stepContent = stepContent; }
+          } else {        
+            impressEditorJsonGet.push(data[0]);
           };
           localStorage.impressEditorJson = JSON.stringify(impressEditorJsonGet);
         } else {
           localStorage.impressEditorJson = JSON.stringify(data);
         };
-        getAllImpressEditorJson();
+        location.reload();
       };
       function deleteStep(idStep) {
-        if (localStorage.impressEditorJson !== undefined && localStorage.impressEditorJson != "") {
+        if (localStorage.impressEditorJson !== undefined && localStorage.impressEditorJson != '') {
           var impressEditorJsonGet = JSON.parse(localStorage.impressEditorJson);
         };
         var p = impressEditorJsonGet.findIndex(x => x.idStep == idStep)
@@ -244,6 +247,46 @@
         localStorage.impressEditorJson = JSON.stringify(impressEditorJsonGet);
         getAllImpressEditorJson();
       };
+      function reset() {
+        $('#idStep').val('');
+        $('#classStep').val('step');
+        $('#datax').val('');
+        $('#datay').val('');
+        $('#dataz').val('');
+        $('#datarotate').val('');
+        $('#datarotatex').val('');
+        $('#datarotatey').val('');
+        $('#datarotatez').val('');
+        $('#datascale').val('');
+        $('#dataautoplay').val('');
+        $('#stepContent').summernote('destroy');
+        $('#stepContent').html('');
+        $('#stepContent').summernote({
+          placeholder: 'Step text',
+          tabsize: 2,
+          height: 325
+        });
+        $('#saveStep, #delStep').addClass('disabled');
+      };
+      $(document).on('click', '.loadStep', function() {
+        var idStep = $(this).data('idstep');
+        getImpressEditorJson(idStep);
+      });
+      $(document).on('input', '#idStep', function(){
+        if ($(this).val().length > 0) {
+          $('#saveStep').removeClass('disabled');
+        } else {
+          $('#saveStep').addClass('disabled');
+        };
+      });
+      $(document).on('click', '#deleteStep', function() {
+        var idStep = $('#idStep').val();
+        deleteStep(idStep);
+      });
+      $(document).on('click', '#deleteAllSteps', function() {
+        localStorage.impressEditorJson = '';
+        getAllImpressEditorJson();
+      });
       $(document).ready(function() {
         getAllImpressEditorJson();
         $('form').submit(function (e) {
@@ -253,13 +296,10 @@
           jsonToLocalStorage.push(data);
           saveImpressEditorJson(jsonToLocalStorage);
         });
-        $(document).on('click', '.loadStep', function() {
-          var idStep = $(this).data('idstep');
-          getImpressEditorJson(idStep);
-        });
-        $(document).on('click', '#deleteStep', function() {
-          var idStep = $('#idStep').val();
-          deleteStep(idStep);
+        $('#confirm-delete').on('show.bs.modal', function(e) {
+          $(this).find('.modal-header').text($(e.relatedTarget).data('title'));
+          $(this).find('.modal-body').text($(e.relatedTarget).data('message'));
+          $(this).find('.btn-ok').attr('id', $(e.relatedTarget).data('idaction'));
         });
       });
     </script>
