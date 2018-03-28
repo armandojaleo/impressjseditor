@@ -29,29 +29,26 @@
     <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
     <script src="js/impress.js"></script>
     <script>
-        function getAllImpressEditorJson() {
-            if (localStorage.impressEditorJson !== undefined && localStorage.impressEditorJson != '') {
-              var impressEditorJsonGet = JSON.parse(localStorage.impressEditorJson);
-              $('#impress').html('');
-              for (var i = 0; i < impressEditorJsonGet.length; i++) {
+        $.getJSON("steps.json", function(json) {
+            if (json !== undefined && json != '') {
+              for (var i = 0; i < json.length; i++) {
                 $('#impress').append('<div ' +
-                    'id="' + impressEditorJsonGet[i].idStep + 
-                    '" class="' + impressEditorJsonGet[i].classStep + 
-                    '" data-x="' + impressEditorJsonGet[i].datax + 
-                    '" data-y="' + impressEditorJsonGet[i].datay + 
-                    '" data-z="' + impressEditorJsonGet[i].dataz + 
-                    '" data-rotate="' + impressEditorJsonGet[i].datarotate + 
-                    '" data-rotate-x="' + impressEditorJsonGet[i].datarotatex + 
-                    '" data-rotate-y="' + impressEditorJsonGet[i].datarotatey + 
-                    '" data-rotate-z="' + impressEditorJsonGet[i].datarotatez + 
-                    '" data-scale="' + impressEditorJsonGet[i].datascale + 
-                    '" data-autoplay="' + impressEditorJsonGet[i].dataautoplay + 
-                    '">' + impressEditorJsonGet[i].stepContent + '</div>');
+                    'id="' + json[i].idStep + 
+                    '" class="' + json[i].classStep + 
+                    '" data-x="' + json[i].datax + 
+                    '" data-y="' + json[i].datay + 
+                    '" data-z="' + json[i].dataz + 
+                    '" data-rotate="' + json[i].datarotate + 
+                    '" data-rotate-x="' + json[i].datarotatex + 
+                    '" data-rotate-y="' + json[i].datarotatey + 
+                    '" data-rotate-z="' + json[i].datarotatez + 
+                    '" data-scale="' + json[i].datascale + 
+                    '" data-autoplay="' + json[i].dataautoplay + 
+                    '">' + json[i].stepContent + '</div>');
               };
               impress().init();
             };
-        };
-        getAllImpressEditorJson();
+        });
     </script>
 </body>
 </html>
