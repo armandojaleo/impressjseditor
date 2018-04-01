@@ -54,6 +54,10 @@ There is also a book available about [Building impressive presentations with imp
 
 You may want to check out the sibling project [Impressionist](https://github.com/henrikingo/impressionist): a 3D GUI editor that can help you in creating impress.js presentations.
 
+### Editor by @armand0jale0
+
+Editor for impressjs (Documentation in progress).
+
 ### Mailing list
 
 You're welcome to ask impress.js related questions on the [impressionist-presentations](https://groups.google.com/forum/#!forum/impressionist-presentations) mailing list.
