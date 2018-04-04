@@ -9,6 +9,7 @@ Author   		Armando Lena
 Dependencies	impress.js
 				bootstrap
 				jquery
+				jquery ui
 
 -->
 <html lang="en">
@@ -18,8 +19,9 @@ Dependencies	impress.js
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=devicewidth, initial-scale=1">
 	<title>Impress JS Editor</title>
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css" rel="stylesheet">
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
-	<link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.10/summernote.css" rel="stylesheet">
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.10/summernote.css" rel="stylesheet">
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.0.0/css/bootstrap-slider.min.css" rel="stylesheet">
 </head>
 
@@ -27,7 +29,7 @@ Dependencies	impress.js
 	<nav class="navbar navbar-default navbar-static-top">
 		<div class="container-fluid">
 			<div class="navbar-header">
-				<a class="navbar-brand" href="#">
+				<a class="navbar-brand" href="./">
 					Impress JS Editor
 				</a>
 			</div>
@@ -41,15 +43,15 @@ Dependencies	impress.js
 						<h3>New / Edit Step</h3>
 					</div>
 					<div class="row form-group">
-						<label class="col-md-4 control-label" for="idStep">Name</label>
+						<label class="col-md-4 control-label" for="idstep">Name</label>
 						<div class="col-md-8">
-							<input class="form-control" id="idStep" name="idStep" type="text" value="Step">
+							<input class="form-control" id="idstep" name="idstep" type="text" value="Step">
 						</div>
 					</div>
 					<div class="row form-group">
-						<label class="col-md-4 control-label" for="classStep">Style</label>
+						<label class="col-md-4 control-label" for="classstep">Style</label>
 						<div class="col-md-8">
-							<select class="form-control" id="classStep" name="classStep">
+							<select class="form-control" id="classstep" name="classstep">
 								<option value="step">Without frame</option>
 								<option value="step slide">With frame</option>
 							</select>
@@ -58,55 +60,64 @@ Dependencies	impress.js
 					<div class="row form-group">
 						<label class="col-md-4 control-label" for="datax">Position X</label>
 						<div class="col-md-8">
-							<input class="form-control" id="datax" name="datax" type="text" value="0" data-provide="slider"	data-slider-min="-1000"	data-slider-max="1000" data-slider-step="1"	data-slider-value="0" data-slider-tooltip="show">
+							<input class="form-control datasliderone" id="datax" name="datax" type="text" value="0">
+							<span class="labelslider" style="float: right;">0</span>
 						</div>
 					</div>
 					<div class="row form-group">
 						<label class="col-md-4 control-label" for="data-y">Position Y</label>
 						<div class="col-md-8">
-							<input class="form-control" id="datay" name="datay" type="text" value="0" data-provide="slider"	data-slider-min="-1000"	data-slider-max="1000" data-slider-step="1"	data-slider-value="0" data-slider-tooltip="show">
+							<input class="form-control datasliderone" id="datay" name="datay" type="text" value="0">
+							<span class="labelslider" style="float: right;">0</span>
 						</div>
 					</div>
 					<div class="row form-group">
 						<label class="col-md-4 control-label" for="dataz">Position Z</label>
 						<div class="col-md-8">
-							<input class="form-control" id="dataz" name="dataz" type="text" value="0" data-provide="slider"	data-slider-min="-1000"	data-slider-max="1000" data-slider-step="1"	data-slider-value="0" data-slider-tooltip="show">
+							<input class="form-control datasliderone" id="dataz" name="dataz" type="text" value="0">
+							<span class="labelslider" style="float: right;">0</span>
 						</div>
 					</div>
 					<div class="row form-group">
 						<label class="col-md-4 control-label" for="datarotate">Rotate</label>
 						<div class="col-md-8">
-							<input class="form-control" id="datarotate" name="datarotate" type="text" value="0" data-provide="slider"	data-slider-min="-1000"	data-slider-max="1000" data-slider-step="1"	data-slider-value="0" data-slider-tooltip="show">
+							<input class="form-control dataslidertwo" id="datarotate" name="datarotate" type="text" value="0">
+							<span class="labelslider" style="float: right;">0</span>
 						</div>
 					</div>
 					<div class="row form-group">
 						<label class="col-md-4 control-label" for="datarotatex">Rotate X</label>
 						<div class="col-md-8">
-							<input class="form-control" id="datarotatex" name="datarotatex" type="text" value="0" data-provide="slider"	data-slider-min="-1000"	data-slider-max="1000" data-slider-step="1"	data-slider-value="0" data-slider-tooltip="show">
+							<input class="form-control dataslidertwo" id="datarotatex" name="datarotatex" type="text" value="0">
+							<span class="labelslider" style="float: right;">0</span>
 						</div>
 					</div>
 					<div class="row form-group">
 						<label class="col-md-4 control-label" for="datarotatey">Rotate Y</label>
 						<div class="col-md-8">
-							<input class="form-control" id="datarotatey" name="datarotatey" type="text" value="0" data-provide="slider"	data-slider-min="-1000"	data-slider-max="1000" data-slider-step="1"	data-slider-value="0" data-slider-tooltip="show">
+							<input class="form-control dataslidertwo" id="datarotatey" name="datarotatey" type="text" value="0">
+							<span class="labelslider" style="float: right;">0</span>
 						</div>
 					</div>
 					<div class="row form-group">
 						<label class="col-md-4 control-label" for="datarotatez">Rotate Z</label>
 						<div class="col-md-8">
-							<input class="form-control" id="datarotatez" name="datarotatez" type="text" value="0" data-provide="slider"	data-slider-min="-1000"	data-slider-max="1000" data-slider-step="1"	data-slider-value="0" data-slider-tooltip="show">
+							<input class="form-control dataslidertwo" id="datarotatez" name="datarotatez" type="text" value="0">
+							<span class="labelslider" style="float: right;">0</span>
 						</div>
 					</div>
 					<div class="row form-group">
 						<label class="col-md-4 control-label" for="datascale">Scale</label>
 						<div class="col-md-8">
-							<input class="form-control" id="datascale" name="datascale" type="text" value="1" data-provide="slider"	data-slider-min="1"	data-slider-max="10" data-slider-step="1" data-slider-value="1" data-slider-tooltip="show">
+							<input class="form-control datasliderthree" id="datascale" name="datascale" type="text" value="1">
+							<span class="labelslider" style="float: right;">1</span>
 						</div>
 					</div>
 					<div class="row form-group">
 						<label class="col-md-4 control-label" for="dataautoplay">Autoplay (seconds)</label>
 						<div class="col-md-8">
-							<input class="form-control" id="dataautoplay" name="dataautoplay" type="text" value="5" data-provide="slider" data-slider-min="1" data-slider-max="60" data-slider-step="1" data-slider-value="5" data-slider-tooltip="show">
+							<input class="form-control datasliderfour" id="dataautoplay" name="dataautoplay" type="text" value="2">
+							<span class="labelslider" style="float: right;">2</span>
 						</div>
 					</div>
 				</div>
@@ -115,36 +126,43 @@ Dependencies	impress.js
 						<h3>&nbsp;</h3>
 					</div>
 					<div class="form-group">
-						<label class="col-md-2 control-label" for="stepContent">Step Content</label>
+						<label class="col-md-2 control-label" for="stepcontent">Step Content</label>
 						<div class="col-md-10">
-							<textarea id="stepContent" name="stepContent" class="form-control"></textarea>
+							<textarea id="stepcontent" name="stepcontent" class="form-control"></textarea>
 						</div>
 					</div>
 					<div class="form-group text-right">
-						<a href="preview.html" target="_new" id="preview" class="btn btn-default">View Preview</a>
-						<div id="loadFile" class="btn btn-info" data-toggle="modal" data-target="#modal-info" data-title="Please select" data-message="Do you want delete this step?">Load File</div>
-						<div id="saveToFile" class="btn btn-info">Save Locally</div>
+						<a href="production.html" target="_new" id="preview" class="btn btn-default">View Production</a>
+						<a href="preview.html" target="_new" id="preview" class="btn btn-default disabled">View Preview</a>
+						<div id="loadFile" data-idaction="loadFile();" class="btn btn-info" data-toggle="modal" data-target="#promp-file" data-title="Please select a file"
+						 data-message="Attention! If you accept load the file your steps are deleted">Load File</div>
+						<div id="saveToFile" class="btn btn-info disabled">Save File</div>
 						<button id="saveStep" class="btn btn-success">Save Step</button>
 						<div id="delStep" data-idaction="deleteStep" class="btn btn-danger disabled" data-toggle="modal" data-target="#confirm-delete"
-							data-title="Please confirm" data-message="Do you want delete this step?">Delete Step</div>
+						 data-title="Please confirm" data-message="Do you want delete this step?">Delete Step</div>
 						<div id="delAllSteps" data-idaction="deleteAllSteps" class="btn btn-danger disabled" data-toggle="modal" data-target="#confirm-delete"
-							data-title="Please confirm" data-message="Do you want delete all steps?">Delete All Steps</div>
+						 data-title="Please confirm" data-message="Do you want delete all steps?">Delete All Steps</div>
 					</div>
 				</div>
 			</form>
 		</div>
 		<div class="row">
-			<div id="listSteps" class="col-md-12"></div>
+			<div class="col-md-4">
+				<div class="form-group">
+					<h4>Steps</h4>
+				</div>
+			</div>
+			<div id="listSteps" class="col-md-12">No exist preview steps. Please create new or load file.</div>
 		</div>
 	</div>
-	<div class="modal fade" id="modal-info" tabindex="-1" role="dialog" aria-labelledby="modal-info" aria-hidden="true">
+	<div class="modal fade" id="promp-file" tabindex="-1" role="dialog" aria-labelledby="promp-file" aria-hidden="true">
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header"></div>
 				<div class="modal-body"></div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-					<div class="btn btn-info">Accept</div>
+					<div class="btn btn-info btn-ok">Accept</div>
 				</div>
 			</div>
 		</div>
@@ -161,10 +179,11 @@ Dependencies	impress.js
 			</div>
 		</div>
 	</div>
-	<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.10/summernote.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.0.0/bootstrap-slider.min.js"></script>
+	<script src="js/bootstrap-slider.min.js"></script>
 	<script src="js/serializeFormJSON.js"></script>
 	<script src="js/scripts.js"></script>
 </body>
