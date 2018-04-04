@@ -57,6 +57,7 @@ You may want to check out the sibling project [Impressionist](https://github.com
 ### Editor by @armand0jale0
 
 Editor for impressjs (Documentation in progress).
+[Demo Impress JS Editor](https://armandojaleo.github.io/impressjseditor/editor/)
 
 ### Mailing list
 
