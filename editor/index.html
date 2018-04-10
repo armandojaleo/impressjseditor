@@ -38,9 +38,10 @@ Dependencies	impress.js
 	<div class="container-fluid">
 		<div class="row">
 			<form id="form" action="#" method="post">
-				<div class="col-md-4">
+				<div class="col-sm-12 col-md-6 col-lg-4">
 					<div class="form-group">
 						<h3>Steps Control</h3>
+						<p>Options for you step.</p>
 					</div>
 					<div class="row form-group">
 						<label class="col-md-4 control-label" for="idstep">Name (Unique)</label>
@@ -121,42 +122,118 @@ Dependencies	impress.js
 						</div>
 					</div>
 				</div>
-				<div class="col-md-8">
-					<div class="form-group">
-						<h3>&nbsp;</h3>
-					</div>
-					<div class="form-group">
-						<label class="col-md-1 control-label" for="stepcontent">Step Content</label>
-						<div class="col-md-11">
+				<div class="col-sm-12 col-md-6 col-lg-8">
+					<h3>&nbsp;</h3>
+					<div class="row form-group">
+						<label class="col-md-12 control-label" for="stepcontent">Step Content</label>
+						<div class="col-md-12">
 							<textarea id="stepcontent" name="stepcontent" class="form-control"></textarea>
 						</div>
 					</div>
-					<div class="form-group text-right">
-						<div id="offline" class="btn btn-default">Save Offline</div>
-						<a href="production.html" target="_new" id="production" class="btn btn-default">View Production</a>
-						<a href="preview.html" target="_new" id="preview" class="btn btn-default disabled">View Preview</a>
-						<div id="loadFile" data-idaction="loadFile();" class="btn btn-info" data-toggle="modal" data-target="#promp-file" data-title="Please select a file"
-						 data-message="Attention! If you accept load the file your steps are deleted">Load File</div>
-						<div id="saveToFile" class="btn btn-info disabled">Save File</div>
-						<button id="saveStep" class="btn btn-success">Save Step</button>
-						<div id="delStep" data-idaction="deleteStep" class="btn btn-danger disabled" data-toggle="modal" data-target="#confirm-delete"
-						 data-title="Please confirm" data-message="Do you want delete this step?">Delete Step</div>
-						<div id="delAllSteps" data-idaction="deleteAllSteps" class="btn btn-danger disabled" data-toggle="modal" data-target="#confirm-delete"
-						 data-title="Please confirm" data-message="Do you want delete all steps?">Delete All Steps</div>
+				</div>
+				<div class="row col-md-12">
+					<div class="row col-md-12 col-lg-6 form-group">
+						<div class="col-xs-6 col-md-3">
+							<button id="saveStep" class="btn btn-block btn-success">Save Step</button>
+						</div>
+						<div class="col-xs-6 col-md-3">
+							<div id="delStep" data-idaction="deleteStep" class="btn btn-block btn-danger disabled" data-toggle="modal" data-target="#confirm-delete"
+							 data-title="Please confirm" data-message="Do you want delete this step?">Delete Step</div>
+						</div>
+					</div>
+					<div class="row col-md-12 col-lg-6 form-group">
+						<div class="col-xs-6 col-md-3 form-group">
+							<div class="btn-group btn-block" role="group">
+								<button type="button" class="btn btn-block btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+									Save
+									<span class="caret"></span>
+								</button>
+								<ul class="dropdown-menu">
+									<li>
+										<a href="#" id="offline" class="">Save Offline</a>
+									</li>
+									<li>
+										<a href="#" id="saveToFile" class="">Save File</a>
+									</li>
+								</ul>
+							</div>
+						</div>
+						<div class="col-xs-6 col-md-3 form-group">
+							<div id="loadFile" data-idaction="loadFile();" class="btn btn-block btn-info" data-toggle="modal" data-target="#promp-file"
+							 data-title="Please select a file" data-message="Attention! If you accept load the file your steps are deleted">Load File</div>
+						</div>
+						<div class="col-xs-12 col-md-3 form-group">
+							<div class="btn-group btn-block" role="group">
+								<button type="button" class="btn btn-block btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+									Preview
+									<span class="caret"></span>
+								</button>
+								<ul class="dropdown-menu">
+									<li>
+										<a href="preview.html" target="_new" id="preview" class="">View Preview</a>
+									</li>
+									<li>
+										<a href="production.html" target="_new" id="production" class="">View Production</a>
+									</li>
+								</ul>
+							</div>
+						</div>
 					</div>
 				</div>
 			</form>
 		</div>
 		<div class="row">
-			<div class="col-md-12">
-				<div class="form-group">
-					<h4>Steps</h4>
-					<hr>
+			<div class="col-md-12 form-group">
+				<h4>Current Steps</h4>
+				<p>Your current steps, you can order it.</p>
+				<hr>
+			</div>
+			<div class="col-md-12 form-group">
+				<div id="listSteps">No exist preview steps. Please create new or load file.</div>
+			</div>
+			<div class="row col-md-12 form-group">
+				<div class="col-xs-12 col-md-4 col-lg-2 form-group">
+					<div id="delAllSteps" data-idaction="deleteAllSteps" class="btn btn-block btn-danger disabled" data-toggle="modal" data-target="#confirm-delete"
+					 data-title="Please confirm" data-message="Do you want delete all steps?">Delete All Steps</div>
 				</div>
 			</div>
-			<div id="listSteps" class="col-md-12">No exist preview steps. Please create new or load file.</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12 form-group">
+				<h4>Preview Steps</h4>
+				<p>Preview for your current steps.</p>
+				<hr>
+			</div>
+			<div class="col-md-12 form-group">
+				<div id="listStepsPreview"></div>
+			</div>
+			<div class="row col-md-12 form-group">
+				<div class="col-xs-12 col-md-4 col-lg-2 form-group">
+					<div id="showOptions" data-idaction="saveOptions" class="btn btn-block btn-info" data-toggle="modal" data-target="#promp-options"
+					data-title="Steps Options">Steps Options</div>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12">
+				<div class="form-group">
+					<p>impress js editor. Thanks for use it!</p>
+				</div>
+			</div>
 		</div>
 	</div>
+	<div class="modal fade" id="promp-options" tabindex="-1" role="dialog" aria-labelledby="promp-options" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header"></div>
+					<div class="modal-body"></div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+						<div class="btn btn-info btn-ok">Accept</div>
+					</div>
+				</div>
+			</div>
+		</div>
 	<div class="modal fade" id="promp-file" tabindex="-1" role="dialog" aria-labelledby="promp-file" aria-hidden="true">
 		<div class="modal-dialog">
 			<div class="modal-content">

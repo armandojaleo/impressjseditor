@@ -25,33 +25,36 @@ function saveFileOffline() {
         var fd2 = '<style>' + data2 + '</style>'; 
         $.get('../js/impress.js', function (data5) { 
             fd5 = '<script>' + data5 + '</script>'; 
-            var fd1 = '<!doctype html><html lang="en"><head><meta charset="utf-8" /><meta name="viewport" content="width=1024" /><meta name="apple-mobile-web-app-capable" content="yes" /><title>impress.js | presentation tool based on the power of CSS3 transforms and transitions in modern browsers | by Bartek Szopka @bartaz</title><meta name="description" content="impress.js is a presentation tool based on the power of CSS3 transforms and transitions in modern browsers and inspired by the idea behind prezi.com." /><meta name="author" content="Bartek Szopka" />';
-            var fd3 = '</head><body class="impress-not-supported"><div class="fallback-message"><p>Your browser <b>doesn\'t support the features required</b> by impress.js, so you are presented with a simplified version of this presentation.</p><p>For the best experience please use the latest <b>Chrome</b>, <b>Safari</b> or <b>Firefox</b> browser.</p></div><div id="impress" data-autoplay="2">';
-            var sd = '';
-            var fd4 = '</div><div id="impress-toolbar"></div><div class="hint"><p>Use a spacebar or arrow keys to navigate. <br/>Press \'P\' to launch speaker console.</p></div><script> if ("ontouchstart" in document.documentElement) { document.querySelector(".hint").innerHTML = "<p>Swipe left or right to navigate</p>"; } </script><script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>';
-            var fd6 = '</script><script>$(document).ready(function(){ impress().init(); });</script></body></html>';
-            if (localStorage.impressEditorJson !== undefined && localStorage.impressEditorJson != '') {
-                var impressEditorJsonGet = JSON.parse(localStorage.impressEditorJson);
-                for (var i = 0; i < impressEditorJsonGet.length; i++) {
-                    var sd = sd + '<div ' +
-                        'id="' + impressEditorJsonGet[i].idstep +
-                        '" class="' + impressEditorJsonGet[i].classstep +
-                        '" data-x="' + impressEditorJsonGet[i].datax +
-                        '" data-y="' + impressEditorJsonGet[i].datay +
-                        '" data-z="' + impressEditorJsonGet[i].dataz +
-                        '" data-rotate="' + impressEditorJsonGet[i].datarotate +
-                        '" data-rotate-x="' + impressEditorJsonGet[i].datarotatex +
-                        '" data-rotate-y="' + impressEditorJsonGet[i].datarotatey +
-                        '" data-rotate-z="' + impressEditorJsonGet[i].datarotatez +
-                        '" data-scale="' + impressEditorJsonGet[i].datascale +
-                        '" data-autoplay="' + impressEditorJsonGet[i].dataautoplay +
-                        '">' + impressEditorJsonGet[i].stepcontent + '</div>';
+            $.get('https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js', function (data5) { 
+                fd6 = '<script>' + data5 + '</script>'; 
+                var fd1 = '<!doctype html><html lang="en"><head><meta charset="utf-8" /><meta name="viewport" content="width=1024" /><meta name="apple-mobile-web-app-capable" content="yes" /><title>impress.js | presentation tool based on the power of CSS3 transforms and transitions in modern browsers | by Bartek Szopka @bartaz</title><meta name="description" content="impress.js is a presentation tool based on the power of CSS3 transforms and transitions in modern browsers and inspired by the idea behind prezi.com." /><meta name="author" content="Bartek Szopka" />';
+                var fd3 = '</head><body class="impress-not-supported"><div class="fallback-message"><p>Your browser <b>doesn\'t support the features required</b> by impress.js, so you are presented with a simplified version of this presentation.</p><p>For the best experience please use the latest <b>Chrome</b>, <b>Safari</b> or <b>Firefox</b> browser.</p></div><div id="impress" data-autoplay="2">';
+                var sd = '';
+                var fd4 = '</div><div id="impress-toolbar"></div><div class="hint"><p>Use a spacebar or arrow keys to navigate. <br/>Press \'P\' to launch speaker console.</p></div><script> if ("ontouchstart" in document.documentElement) { document.querySelector(".hint").innerHTML = "<p>Swipe left or right to navigate</p>"; } </script>'
+                var fd7 = '</script><script>$(document).ready(function(){ impress().init(); });</script></body></html>';
+                if (localStorage.impressEditorJson !== undefined && localStorage.impressEditorJson != '') {
+                    var impressEditorJsonGet = JSON.parse(localStorage.impressEditorJson);
+                    for (var i = 0; i < impressEditorJsonGet.length; i++) {
+                        var sd = sd + '<div ' +
+                            'id="' + impressEditorJsonGet[i].idstep +
+                            '" class="' + impressEditorJsonGet[i].classstep +
+                            '" data-x="' + impressEditorJsonGet[i].datax +
+                            '" data-y="' + impressEditorJsonGet[i].datay +
+                            '" data-z="' + impressEditorJsonGet[i].dataz +
+                            '" data-rotate="' + impressEditorJsonGet[i].datarotate +
+                            '" data-rotate-x="' + impressEditorJsonGet[i].datarotatex +
+                            '" data-rotate-y="' + impressEditorJsonGet[i].datarotatey +
+                            '" data-rotate-z="' + impressEditorJsonGet[i].datarotatez +
+                            '" data-scale="' + impressEditorJsonGet[i].datascale +
+                            '" data-autoplay="' + impressEditorJsonGet[i].dataautoplay +
+                            '">' + impressEditorJsonGet[i].stepcontent + '</div>';
+                    };
                 };
-            };
-            var a = document.createElement('a');
-            a.setAttribute('href', 'data:text/plain;charset=utf-u,' + encodeURIComponent(fd1 + fd2 + fd3 + sd + fd4 + fd5 + fd6));
-            a.setAttribute('download', 'offline.html');
-            a.click();
+                var a = document.createElement('a');
+                a.setAttribute('href', 'data:text/plain;charset=utf-u,' + encodeURIComponent(fd1 + fd2 + fd3 + sd + fd4 + fd5 + fd6 + fd7));
+                a.setAttribute('download', 'offline.html');
+                a.click();
+            });
         });
     });
     
@@ -114,7 +117,7 @@ function getAllImpressEditorJson() {
         var impressEditorJsonGet = JSON.parse(localStorage.impressEditorJson);
         $('#listSteps').html('');
         for (var i = 0; i < impressEditorJsonGet.length; i++) {
-            $('#listSteps').append('<div id="item-' + i + '" class="btn btn-default loadStep" data-idstep="' + impressEditorJsonGet[i].idstep + '">' + impressEditorJsonGet[i].idstep + '</div>');
+            $('#listSteps').append('<div id="item-' + i + '" class="btn btn-default col-xs-12 col-md-2 loadStep" data-idstep="' + impressEditorJsonGet[i].idstep + '" aria-label="Move Step">' + impressEditorJsonGet[i].idstep + '</div>');
         };
     };
     $('#stepcontent').summernote({
@@ -250,10 +253,12 @@ $(document).on('click', '#deleteAllSteps', function () {
     localStorage.impressEditorJson = '';
     location.reload();
 });
-$(document).on('click', '#saveToFile', function () {
+$(document).on('click', '#saveToFile', function (e) {
+    e.preventDefault();
     saveFile(localStorage.impressEditorJson, "steps.json");
 });
-$(document).on('click', '#offline', function () {
+$(document).on('click', '#offline', function (e) {
+    e.preventDefault();
     saveFileOffline();
 });
 $(document).ready(function () {
