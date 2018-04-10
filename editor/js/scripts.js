@@ -25,8 +25,8 @@ function saveFileOffline() {
         var fd2 = '<style>' + data2 + '</style>'; 
         $.get('../js/impress.js', function (data5) { 
             fd5 = '<script>' + data5 + '</script>'; 
-            $.get('https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js', function (data5) { 
-                fd6 = '<script>' + data5 + '</script>'; 
+            $.get('https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js', function (data6) { 
+                fd6 = '<script>' + data6 + '</script>'; 
                 var fd1 = '<!doctype html><html lang="en"><head><meta charset="utf-8" /><meta name="viewport" content="width=1024" /><meta name="apple-mobile-web-app-capable" content="yes" /><title>impress.js | presentation tool based on the power of CSS3 transforms and transitions in modern browsers | by Bartek Szopka @bartaz</title><meta name="description" content="impress.js is a presentation tool based on the power of CSS3 transforms and transitions in modern browsers and inspired by the idea behind prezi.com." /><meta name="author" content="Bartek Szopka" />';
                 var fd3 = '</head><body class="impress-not-supported"><div class="fallback-message"><p>Your browser <b>doesn\'t support the features required</b> by impress.js, so you are presented with a simplified version of this presentation.</p><p>For the best experience please use the latest <b>Chrome</b>, <b>Safari</b> or <b>Firefox</b> browser.</p></div><div id="impress" data-autoplay="2">';
                 var sd = '';
