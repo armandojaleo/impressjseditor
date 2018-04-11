@@ -48,6 +48,10 @@
             };
             impress().init();
         };
+        if (localStorage.impressEditorOptionsJson !== undefined && localStorage.impressEditorOptionsJson != '') {
+            var impressEditorOptionsJsonGet = JSON.parse(localStorage.impressEditorOptionsJson);
+            $('body').css({'background': impressEditorOptionsJsonGet[0].background})
+        }
     </script>
 </body>
 </html>

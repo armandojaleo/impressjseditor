@@ -22,6 +22,7 @@ Dependencies	impress.js
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css" rel="stylesheet">
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.10/summernote.css" rel="stylesheet">
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-colorpicker/2.5.2/css/bootstrap-colorpicker.min.css" rel="stylesheet">
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.0.0/css/bootstrap-slider.min.css" rel="stylesheet">
 </head>
 
@@ -209,8 +210,7 @@ Dependencies	impress.js
 			</div>
 			<div class="row col-md-12 form-group">
 				<div class="col-xs-12 col-md-4 col-lg-2 form-group">
-					<div id="showOptions" data-idaction="saveOptions" class="btn btn-block btn-info" data-toggle="modal" data-target="#promp-options"
-					data-title="Steps Options">Steps Options</div>
+					<div id="showOptions" data-idaction="saveOptions" class="btn btn-block btn-info" data-toggle="modal" data-target="#promp-options">Steps Options</div>
 				</div>
 			</div>
 		</div>
@@ -223,17 +223,39 @@ Dependencies	impress.js
 		</div>
 	</div>
 	<div class="modal fade" id="promp-options" tabindex="-1" role="dialog" aria-labelledby="promp-options" aria-hidden="true">
-			<div class="modal-dialog">
-				<div class="modal-content">
-					<div class="modal-header"></div>
-					<div class="modal-body"></div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-						<div class="btn btn-info btn-ok">Accept</div>
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">Steps Options</div>
+				<div class="modal-body">
+					<div class="row form-group">
+						<label class="col-md-4 control-label" for="background">Background Color</label>
+						<div class="col-md-8">
+							<div id="backgroundaddon" class="input-group colorpicker-component" title="Using input value">
+								<input class="form-control" id="background" name="background" type="text" value="#FFFFFF">
+								<span class="input-group-addon"><i></i></span>
+							</div>
+						</div>
 					</div>
+					<div class="row form-group">
+						<label class="col-md-4 control-label" for="maxv">Max position</label>
+						<div class="col-md-8">
+							<input class="form-control" id="maxv" name="maxv" type="number" value="10000" min="100">
+						</div>
+					</div>
+					<div class="row form-group">
+						<label class="col-md-4 control-label" for="maxt">Max time</label>
+						<div class="col-md-8">
+							<input class="form-control" id="maxt" name="maxt" type="number" value="60" min="1">
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+					<div class="btn btn-info btn-ok">Save Options</div>
 				</div>
 			</div>
 		</div>
+	</div>
 	<div class="modal fade" id="promp-file" tabindex="-1" role="dialog" aria-labelledby="promp-file" aria-hidden="true">
 		<div class="modal-dialog">
 			<div class="modal-content">
@@ -262,9 +284,18 @@ Dependencies	impress.js
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.10/summernote.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-colorpicker/2.5.2/js/bootstrap-colorpicker.min.js"></script>
 	<script src="js/bootstrap-slider.min.js"></script>
 	<script src="js/serializeFormJSON.js"></script>
 	<script src="js/scripts.js"></script>
+	<script>
+		$(document).ready(function () {
+			$('body').ijse({
+
+			});
+			$('#backgroundaddon, #background').colorpicker();
+		});
+	</script>
 </body>
 
 </html>
