@@ -1,54 +1,65 @@
 <!doctype html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=1024" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
-    <title>impress.js | presentation tool based on the power of CSS3 transforms and transitions in modern browsers | by Bartek Szopka @bartaz</title>
-    <meta name="description" content="impress.js is a presentation tool based on the power of CSS3 transforms and transitions in modern browsers and inspired by the idea behind prezi.com." />
+    <title>impress.js | presentation tool based on the power of CSS3 transforms and transitions in modern browsers | by Bartek Szopka
+        @bartaz</title>
+    <meta name="description" content="impress.js is a presentation tool based on the power of CSS3 transforms and transitions in modern browsers and inspired by the idea behind prezi.com."
+    />
     <meta name="author" content="Bartek Szopka" />
     <link href="../css/impress-demo.css" rel="stylesheet" />
     <link rel="shortcut icon" href="../favicon.png" />
     <link rel="apple-touch-icon" href="../apple-touch-icon.png" />
 </head>
+
 <body class="impress-not-supported">
     <div class="fallback-message">
-        <p>Your browser <b>doesn't support the features required</b> by impress.js, so you are presented with a simplified version of this presentation.</p>
-        <p>For the best experience please use the latest <b>Chrome</b>, <b>Safari</b> or <b>Firefox</b> browser.</p>
+        <p>Your browser
+            <b>doesn't support the features required</b> by impress.js, so you are presented with a simplified version of this
+            presentation.</p>
+        <p>For the best experience please use the latest
+            <b>Chrome</b>,
+            <b>Safari</b> or
+            <b>Firefox</b> browser.</p>
     </div>
     <div id="impress" data-autoplay="2"></div>
     <div id="impress-toolbar"></div>
     <div class="hint">
-        <p>Use a spacebar or arrow keys to navigate. <br/>Press 'P' to launch speaker console.</p>
+        <p>Use a spacebar or arrow keys to navigate.
+            <br/>Press 'P' to launch speaker console.</p>
     </div>
     <script>
-        if ("ontouchstart" in document.documentElement) { 
+        if ("ontouchstart" in document.documentElement) {
             document.querySelector(".hint").innerHTML = "<p>Swipe left or right to navigate</p>";
         }
     </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="../js/impress.js"></script>
     <script>
-        $.getJSON("steps.json", function(json) {
+        $.getJSON("steps.json", function (json) {
             if (json !== undefined && json != '') {
-              for (var i = 0; i < json.length; i++) {
-                $('#impress').append('<div ' +
-                    'id="' + json[i].idstep + 
-                    '" class="' + json[i].classstep + 
-                    '" data-x="' + json[i].datax + 
-                    '" data-y="' + json[i].datay + 
-                    '" data-z="' + json[i].dataz + 
-                    '" data-rotate="' + json[i].datarotate + 
-                    '" data-rotate-x="' + json[i].datarotatex + 
-                    '" data-rotate-y="' + json[i].datarotatey + 
-                    '" data-rotate-z="' + json[i].datarotatez + 
-                    '" data-scale="' + json[i].datascale + 
-                    '" data-autoplay="' + json[i].dataautoplay + 
-                    '">' + json[i].stepcontent + '</div>');
-              };
-              impress().init();
+                for (var i = 0; i < json.length; i++) {
+                    $('#impress').append('<div ' +
+                        'id="' + json[i].idstep +
+                        '" class="' + json[i].classstep +
+                        '" data-x="' + json[i].datax +
+                        '" data-y="' + json[i].datay +
+                        '" data-z="' + json[i].dataz +
+                        '" data-rotate="' + json[i].datarotate +
+                        '" data-rotate-x="' + json[i].datarotatex +
+                        '" data-rotate-y="' + json[i].datarotatey +
+                        '" data-rotate-z="' + json[i].datarotatez +
+                        '" data-scale="' + json[i].datascale +
+                        '" data-autoplay="' + json[i].dataautoplay +
+                        '">' + json[i].stepcontent + '</div>');
+                };
+                impress().init();
             };
         });
     </script>
 </body>
+
 </html>

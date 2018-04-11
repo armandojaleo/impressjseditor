@@ -160,7 +160,7 @@ Dependencies	impress.js
 							</div>
 						</div>
 						<div class="col-xs-6 col-md-3 form-group">
-							<div id="loadFile" data-idaction="loadFile();" class="btn btn-block btn-info" data-toggle="modal" data-target="#promp-file"
+							<div id="file" data-idaction="loadFile" class="btn btn-block btn-info" data-toggle="modal" data-target="#promp-file"
 							 data-title="Please select a file" data-message="Attention! If you accept load the file your steps are deleted">Load File</div>
 						</div>
 						<div class="col-xs-12 col-md-3 form-group">
@@ -232,7 +232,9 @@ Dependencies	impress.js
 						<div class="col-md-8">
 							<div id="backgroundaddon" class="input-group colorpicker-component" title="Using input value">
 								<input class="form-control" id="background" name="background" type="text" value="#FFFFFF">
-								<span class="input-group-addon"><i></i></span>
+								<span class="input-group-addon">
+									<i></i>
+								</span>
 							</div>
 						</div>
 					</div>
@@ -290,9 +292,7 @@ Dependencies	impress.js
 	<script src="js/scripts.js"></script>
 	<script>
 		$(document).ready(function () {
-			$('body').ijse({
-
-			});
+			var ijse = $('body').ijse({});
 			$('#backgroundaddon, #background').colorpicker();
 		});
 	</script>

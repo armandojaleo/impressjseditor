@@ -70,7 +70,7 @@
                                     '">' + impressEditorJsonGet[i].stepcontent + '</div>';
                             };
                         };
-                        
+
                         var a = document.createElement('a');
                         a.setAttribute('href', 'data:text/plain;charset=utf-u,' + encodeURIComponent(fd1 + fd2 + stl + fd3 + sd + fd4 + fd5 + fd6 + fd7));
                         a.setAttribute('download', 'offline.html');
@@ -287,6 +287,10 @@
             localStorage.impressEditorJson = '';
             location.reload();
         });
+        $(document).on('click', '#loadFile', function (e) {
+            e.preventDefault();
+            loadFile();
+        });
         $(document).on('click', '#saveToFile', function (e) {
             e.preventDefault();
             saveFile(localStorage.impressEditorJson, "steps.json");
@@ -326,18 +330,18 @@
                     var impressEditorOptionsJsonGet = JSON.parse(localStorage.impressEditorOptionsJson);
                     $('#backgroundaddon, #background').colorpicker('destroy')
                     $(this).find('#background').val(impressEditorOptionsJsonGet[0].background);
-                    $('#backgroundaddon, #background').colorpicker({color: impressEditorOptionsJsonGet[0].background});
+                    $('#backgroundaddon, #background').colorpicker({ color: impressEditorOptionsJsonGet[0].background });
                     $(this).find('#maxv').val(impressEditorOptionsJsonGet[0].maxv);
                     $(this).find('#maxt').val(impressEditorOptionsJsonGet[0].maxt);
                 }
-                
+
                 $(this).find('.btn-ok').attr('id', $(e.relatedTarget).data('idaction'));
             });
 
             $('#promp-file').on('show.bs.modal', function (e) {
                 $(this).find('.modal-header').text($(e.relatedTarget).data('title'));
                 $(this).find('.modal-body').text($(e.relatedTarget).data('message')).append('<div class="form-goup"><input class="form-control" id="filetoload" name="filetoload" type="file"></div>');;
-                $(this).find('.btn-ok').attr('onclick', $(e.relatedTarget).data('idaction'));
+                $(this).find('.btn-ok').attr('id', $(e.relatedTarget).data('idaction'));
             });
 
             $('#confirm-delete').on('show.bs.modal', function (e) {
