@@ -190,7 +190,7 @@
             if (localStorage.impressEditorJson !== undefined && localStorage.impressEditorJson != '') {
                 var impressEditorJsonGet = JSON.parse(localStorage.impressEditorJson);
             };
-            var p = impressEditorJsonGet.findIndex(x => x.idStep == idStep)
+            var p = impressEditorJsonGet.findIndex(x => x.idstep == idStep)
             if (p !== -1) {
                 impressEditorJsonGet.splice(p, 1);
             };
